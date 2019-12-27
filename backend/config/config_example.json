@@ -1,0 +1,9 @@
+{
+    "backup": {
+        "time": "03:00",
+        "source": "/data",
+        "target": "/backup",
+        "filename": "server_backup",
+        "delete_old_after_hours": 96
+    }
+}

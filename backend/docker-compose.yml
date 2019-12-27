@@ -1,0 +1,14 @@
+version: "2.2"
+
+services:
+  homemanger:
+    image: homemanager
+    container_name: homemanager
+    network_mode: host
+    restart: always
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - /data/homemanager:/config
+      - /mnt/backup:/backup 
+      - /data:/data 

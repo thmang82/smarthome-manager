@@ -1,0 +1,6 @@
+js_out
+config/config.json
+node_modules
+dist
+
+**/*.DS_Store
