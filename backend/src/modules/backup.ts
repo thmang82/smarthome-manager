@@ -3,7 +3,7 @@ import { scheduleJob, Job } from 'node-schedule';
 import { execSync } from 'child_process';
 import * as moment from 'moment';
 import * as fs from "fs";
-import { mqttInstance } from "server";
+import { mqttInstance } from "../server";
 
 const conf_date_format = "YYYYMMDD_HHmmss";
 

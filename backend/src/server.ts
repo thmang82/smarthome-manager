@@ -1,6 +1,6 @@
 import { readConfigFile } from "./modules/config";
 import { ServerBackup } from "./modules/backup";
-import { MqttClass } from "modules/mqtt";
+import { MqttClass } from "./modules/mqtt";
 
 
 const config = readConfigFile();
