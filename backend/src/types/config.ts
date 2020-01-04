@@ -1,6 +1,10 @@
 
 
 export interface ConfigFile {
+    mqtt:{
+        url: string,
+        topic: string
+    }
     backup: {
         time: string,
         source: string,

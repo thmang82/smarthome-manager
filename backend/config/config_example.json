@@ -1,4 +1,8 @@
 {
+    "mqtt": {
+        "url": "localhost",
+        "topic": "homemanager"
+    },
     "backup": {
         "time": "03:00",
         "source": "/data",

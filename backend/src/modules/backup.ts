@@ -3,6 +3,7 @@ import { scheduleJob, Job } from 'node-schedule';
 import { execSync } from 'child_process';
 import * as moment from 'moment';
 import * as fs from "fs";
+import { mqttInstance } from "server";
 
 const conf_date_format = "YYYYMMDD_HHmmss";
 
@@ -61,11 +62,16 @@ export class ServerBackup {
             const out_file = this.target + "/" + filename;
             const cmd = `tar -zcvf ${out_file} ${this.source}`;
             const cmd_rights = `chmod 444 ${out_file}`;
+
+            const mqtt_topic = "backup";
             try {
                 execSync(cmd);
                 execSync(cmd_rights);
+                mqttInstance.publish(mqtt_topic, "Backup success at " + date_str + " => " + out_file, true);
             } catch (e) {
                 console.error("ERROR: Backup command failed with error: ", e);
+                // Permission denied
+                mqttInstance.publish(mqtt_topic, "Backup Failed at " + date_str, true);
             }
         } else {
             console.error("Backup - Error: Could not find path: "  + this.target);
