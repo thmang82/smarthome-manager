@@ -1,4 +1,8 @@
 {
+    "api": {
+        "token": "AllowThisKey",
+        "allowed_ips": [ "192.168.0.0/16", "127.0.0.1" ]
+    },
     "mqtt": {
         "url": "localhost",
         "topic": "homemanager"
@@ -6,8 +10,16 @@
     "backup": {
         "time": "03:00",
         "source": "/data",
-        "target": "/backup",
+        "target": "/mnt/backup",
         "filename": "server_backup",
-        "delete_old_after_hours": 96
+        "delete_old_after_hours": 96,
+        "delete_monday_after_weeks": 5,
+        "mount": {
+            "share": "//nas.lan/backup",
+            "path": "/mnt/backup",
+            "user": "username",
+            "pass": "password",
+            "uid": 1000
+          }
     }
 }

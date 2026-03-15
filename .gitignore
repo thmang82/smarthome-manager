@@ -1,3 +1,4 @@
 backup
 .DS_Store
 backend/webpack_readme.txt
+backend/config.json

@@ -1,11 +1,10 @@
 import * as mqtt from 'mqtt';
 import { ConfigFile } from "../types/config";
 
-const IDENT_INTERTECHNO = "intertechno_event";
-
 export class MqttClass {
-    private client: mqtt.Client | undefined;
+    private client: mqtt.Client | undefined;
     private topic: string;
+    private mqtt_url: string;
 
     constructor(){
 
@@ -21,17 +20,19 @@ export class MqttClass {
 
         if (config.mqtt && config.mqtt.url && config.mqtt.topic){
             this.topic = config.mqtt.topic;
-            this.client = mqtt.connect('mqtt://localhost');
+            this.mqtt_url = 'mqtt://' + config.mqtt.url
+
+            console.log('MQTT: connecting to ' + this.mqtt_url + " ...");
+            this.client = mqtt.connect(this.mqtt_url);
             this.client.on('connect', () => {
-                console.log('MQTT: connect');
+                console.log('MQTT: connected to ' + this.mqtt_url);
                 if (this.client){
-                    this.client.subscribe('miflora/#');
-                    this.client.subscribe(IDENT_INTERTECHNO);
+                    // this.client.subscribe('subscribe_string');
                 }
             })
 
             this.client.on('reconnect', () => {
-                console.log('MQTT: reconnect');
+                console.log('MQTT: reconnect to ' + this.mqtt_url);
             })
             
             this.client.on('message', (topic, message) => {

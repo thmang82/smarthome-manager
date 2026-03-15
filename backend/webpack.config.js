@@ -1,7 +1,6 @@
 var path = require('path');
-var webpack = require('webpack');
-var fs = require('fs');
-const CopyPlugin = require('copy-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
+// const CopyPlugin = require('copy-webpack-plugin');
  
 module.exports = {
   context: __dirname + "/js_out",
@@ -15,14 +14,11 @@ module.exports = {
     // the output path               
     path: path.resolve(__dirname, 'dist')
   },
+  externals: [ nodeExternals() ],
   mode: "development",
   devtool: 'source-map',
   target: "node",
-  externals: {
-  },
-  plugins: [
-    new CopyPlugin([]),
-  ],
+  plugins: [],
   module: {
     rules: [
       // all files with a `.ts` extension will be handled by `ts-loader`
