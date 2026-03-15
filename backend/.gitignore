@@ -2,6 +2,8 @@ js_out
 config/config.json
 node_modules
 dist
-scripts
 **/*.DS_Store
+scripts/*
+
+
 !scripts/servermanager.service
